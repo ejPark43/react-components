@@ -1,13 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 function Clock() {
+  const [clockTime, setClockTime] = useState("");
+  const [stringDate, setStringDate] = useState("");
+
+  const CalculatedTime = () => {
+    let now = new Date();
+    let hour = String(now.getHours()).padStart("2", 0);
+    let minute = String(now.getMinutes()).padStart("2", 0);
+    let second = String(now.getSeconds()).padStart("2", 0); // 한자릿수 숫자일땐 앞에 0 없이 나오므로, 두자리수로 표현해주기 위해서 padStart사용.
+    let year = now.getFullYear(); // 년도
+    let month = now.getMonth(); // 월
+    let date = now.getDate(); // 날짜
+    setStringDate(`${year}년 ${month + 1}월 ${date}일`);
+    return `${hour}:${minute}:${second}`;
+  };
+
+  console.log("AA");
+  useEffect(() => {
+    setInterval(() => setClockTime(CalculatedTime()), 1000);
+  }, []);
   return (
     <>
       <Container>
-        <DatePart>2025.03.05</DatePart>
+        <DatePart>{stringDate}</DatePart>
 
-        <ClockPart>00:00:00</ClockPart>
+        <ClockPart>{clockTime}</ClockPart>
       </Container>
     </>
   );
