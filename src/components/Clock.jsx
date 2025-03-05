@@ -22,13 +22,11 @@ function Clock() {
     setInterval(() => setClockTime(CalculatedTime()), 1000);
   }, []);
   return (
-    <>
-      <Container>
-        <DatePart>{stringDate}</DatePart>
+    <Container>
+      <DatePart>{stringDate}</DatePart>
 
-        <ClockPart>{clockTime}</ClockPart>
-      </Container>
-    </>
+      <ClockPart>{clockTime}</ClockPart>
+    </Container>
   );
 }
 
@@ -36,9 +34,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   border: 2px solid green;
-  width: 100%;
-  height: 200px;
-  padding: 20px;
+  height: 130px;
+  padding: 20px; //width값 없애고 그냥 Padding값만 줌, 자동으로 padding값 적용된 width로 설정됨.
 `;
 
 const DatePart = styled.div`
