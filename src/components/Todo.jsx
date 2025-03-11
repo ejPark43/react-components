@@ -18,18 +18,30 @@ const TODOS_KEY = "todos"; // 로컬 저장소에 저장된 키 이름
 // function saveTodos() {
 //   localStorage.setItem(TODOS_KEY, JSON.stringify(todos));
 // }
+const saveTodos = () => {
+  console.log("save Todo!");
+};
+
 const enterPressed = (e) => {
-  console.log(e);
   if (e.code == "Enter") {
     console.log("enter pressed!!!");
+    saveTodos();
   }
+
+  /*
+엔터 입력 시: 
+1. 화면에 todo가 새로 추가되어야함. 
+2. todos에 새로운 todo가 추가됨 
+3. input 부분이 초기화 되어야함(빈칸)
+*/
 };
 function Todo() {
   return (
     <TodoContainer>
-      <span>
+      <WriteTodo>
         Todo: <InputTodo onKeyDown={(e) => enterPressed(e)} />
-      </span>
+        <SetTodoBtn onClick={() => console.log("set todo!")}>set</SetTodoBtn>
+      </WriteTodo>
     </TodoContainer>
   );
 }
@@ -42,9 +54,28 @@ const TodoContainer = styled.div`
   height: 100%;
   border: 2px solid magenta;
 `;
-
+const WriteTodo = styled.div`
+  display: flex;
+  align-items: center;
+  /* flex-direction: row; */
+`;
 const InputTodo = styled.input`
   border: 2px solid blue;
   outline: none;
+  /* height: 30px; */
+  padding: 10px;
+  width: 200px;
+  font-size: 15px;
+`;
+const SetTodoBtn = styled.div`
+  padding: 10px;
+  /* width: 1rem; */
+  border: 2px solid #29b943;
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    background-color: #29b943;
+    transition: 0.1s;
+  }
 `;
 export default Todo;
