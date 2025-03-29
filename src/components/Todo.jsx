@@ -18,14 +18,15 @@ const TODOS_KEY = "todos"; // 로컬 저장소에 저장된 키 이름
 // function saveTodos() {
 //   localStorage.setItem(TODOS_KEY, JSON.stringify(todos));
 // }
-const saveTodos = () => {
-  console.log("save Todo!");
+const saveTodos = (a) => {
+  console.log(a);
 };
 
 const enterPressed = (e) => {
   if (e.code == "Enter") {
     console.log("enter pressed!!!");
-    saveTodos();
+    let a = e.target.value;
+    saveTodos(a);
   }
 
   /*
@@ -39,7 +40,11 @@ function Todo() {
   return (
     <TodoContainer>
       <WriteTodo>
-        Todo: <InputTodo onKeyDown={(e) => enterPressed(e)} />
+        Todo:
+        <InputTodo
+          onKeyDown={(e) => enterPressed(e)}
+          onChange={(e) => console.log(e.target.value)}
+        />
         <SetTodoBtn onClick={() => console.log("set todo!")}>set</SetTodoBtn>
       </WriteTodo>
     </TodoContainer>
