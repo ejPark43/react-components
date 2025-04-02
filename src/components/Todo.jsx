@@ -6,27 +6,35 @@ import styled from "styled-components";
 2. todo는 삭제, 수정 기능이 있다. 
 3. 하루에 모두 초기화된다.
 
-
 */
 
 // todo를 입력한다.
 // 방금 작성한 todo를 local storage에 저장한다.
 const TODOS_KEY = "todos"; // 로컬 저장소에 저장된 키 이름
 
-// let todos = []; //새로운 todo가 생길 때마다 이 배열에 넣어줄 것임.(=push 해줄거임)
+let todos = []; //새로운 todo가 생길 때마다 이 배열에 넣어줄 것임.(=push 해줄거임)
 
-// function saveTodos() {
-//   localStorage.setItem(TODOS_KEY, JSON.stringify(todos));
-// }
-const saveTodos = (a) => {
-  console.log(a);
+function saveTodos() {
+  localStorage.setItem(TODOS_KEY, JSON.stringify(todos));
+}
+
+// const getTodosFromStorage = () => {
+//   localStorage.getItem(TODOS_KEY);
+// };
+// const saveTodos = (a) => {
+//   console.log(a);
+//   localStorage.setItem(TODOS_KEY, a);
+//   // getTodosFromStorage();
+// };
+const enterTodo = (a) => {
+  todos.push(a);
+  saveTodos();
 };
-
 const enterPressed = (e) => {
   if (e.code == "Enter") {
     console.log("enter pressed!!!");
     let a = e.target.value;
-    saveTodos(a);
+    enterTodo(a);
   }
 
   /*
@@ -37,6 +45,10 @@ const enterPressed = (e) => {
 */
 };
 function Todo() {
+  /* localstorage에 이미 저장되어있는 투두스를 가져와서 넣어야함. 현재 새로고침하면 이전에 갖고있던 값을 가져오지 않는중(let 으로 todos를 초기화하는중이라서...) */
+
+  // todos.push(localStorage.getItem("todos"));
+
   return (
     <TodoContainer>
       <WriteTodo>
@@ -47,10 +59,19 @@ function Todo() {
         />
         <SetTodoBtn onClick={() => console.log("set todo!")}>set</SetTodoBtn>
       </WriteTodo>
+      <ShowTodos>
+        <EachTodo>aa</EachTodo>
+      </ShowTodos>
     </TodoContainer>
   );
 }
-
+const EachTodo = styled.div``;
+const ShowTodos = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border: 2px solid gold;
+`;
 const TodoContainer = styled.div`
   display: flex;
   flex-direction: column;

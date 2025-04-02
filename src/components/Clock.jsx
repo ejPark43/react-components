@@ -24,7 +24,6 @@ function Clock() {
   return (
     <Container>
       <DatePart>{stringDate}</DatePart>
-
       <ClockPart>{clockTime}</ClockPart>
     </Container>
   );
