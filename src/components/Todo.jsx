@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 /*
 <version 1> 
@@ -26,41 +26,48 @@ function saveTodos() {
 //   localStorage.setItem(TODOS_KEY, a);
 //   // getTodosFromStorage();
 // };
-const enterTodo = (a) => {
-  todos.push(a);
-  saveTodos();
-};
-const enterPressed = (e) => {
-  if (e.code == "Enter") {
-    console.log("enter pressed!!!");
-    let a = e.target.value;
-    enterTodo(a);
-  }
 
-  /*
-엔터 입력 시: 
-1. 화면에 todo가 새로 추가되어야함. 
-2. todos에 새로운 todo가 추가됨 
-3. input 부분이 초기화 되어야함(빈칸)
-*/
-};
 function Todo() {
   /* localstorage에 이미 저장되어있는 투두스를 가져와서 넣어야함. 현재 새로고침하면 이전에 갖고있던 값을 가져오지 않는중(let 으로 todos를 초기화하는중이라서...) */
 
   // todos.push(localStorage.getItem("todos"));
 
+  const enterTodo = (a) => {
+    todos.push(a);
+    saveTodos();
+  };
+  const enterPressed = (e) => {
+    if (e.code == "Enter") {
+      console.log("enter pressed!!!");
+      let a = e.target.value;
+      enterTodo(a);
+      setValue("");
+    }
+
+    /*
+  엔터 입력 시: 
+  1. 화면에 todo가 새로 추가되어야함. 
+  2. todos에 새로운 todo가 추가됨 
+  3. input 부분이 초기화 되어야함(빈칸)
+  */
+  };
+  const [value, setValue] = useState("");
+  const onChange = useCallback((e) => {
+    setValue(e.target.value);
+  }, []);
   return (
     <TodoContainer>
       <WriteTodo>
         Todo:
         <InputTodo
           onKeyDown={(e) => enterPressed(e)}
-          onChange={(e) => console.log(e.target.value)}
+          onChange={onChange}
+          value={value}
         />
         <SetTodoBtn onClick={() => console.log("set todo!")}>set</SetTodoBtn>
       </WriteTodo>
       <ShowTodos>
-        <EachTodo>aa</EachTodo>
+        <EachTodo>{value}</EachTodo>
       </ShowTodos>
     </TodoContainer>
   );
