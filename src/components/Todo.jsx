@@ -67,14 +67,20 @@ function Todo() {
         <SetTodoBtn onClick={() => console.log("set todo!")}>set</SetTodoBtn>
       </WriteTodo>
       <ShowTodos>
-        <EachTodo>{value}</EachTodo>
+        {todos.map((todo) => (
+          <EachTodo>{todo}</EachTodo>
+        ))}
       </ShowTodos>
     </TodoContainer>
   );
 }
-const EachTodo = styled.div``;
+const EachTodo = styled.div`
+  display: flex;
+  border: 2px solid red;
+`;
 const ShowTodos = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   border: 2px solid gold;
