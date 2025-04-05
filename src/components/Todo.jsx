@@ -31,29 +31,34 @@ function Todo() {
   /* localstorage에 이미 저장되어있는 투두스를 가져와서 넣어야함. 현재 새로고침하면 이전에 갖고있던 값을 가져오지 않는중(let 으로 todos를 초기화하는중이라서...) */
 
   // todos.push(localStorage.getItem("todos"));
-
+  const [value, setValue] = useState("");
   const enterTodo = (a) => {
     if (a != "") {
       todos.push(a);
       saveTodos();
     }
   };
-  const enterPressed = (e) => {
-    if (e.code == "Enter") {
-      console.log("enter pressed!!!");
-      let a = e.target.value;
-      enterTodo(a);
-      setValue("");
-    }
 
-    /*
+  const enterPressed = useCallback(
+    (e) => {
+      if (e.code == "Enter") {
+        if (e.nativeEvent.isComposing) return;
+        console.log("enter pressed!!!");
+        let a = e.target.value;
+        enterTodo(a);
+        setValue("");
+        e.preventDefault();
+      }
+    },
+    [value]
+  );
+  /*
   엔터 입력 시: 
   1. 화면에 todo가 새로 추가되어야함. 
   2. todos에 새로운 todo가 추가됨 
   3. input 부분이 초기화 되어야함(빈칸)
   */
-  };
-  const [value, setValue] = useState("");
+
   const onChange = useCallback((e) => {
     setValue(e.target.value);
   }, []);
