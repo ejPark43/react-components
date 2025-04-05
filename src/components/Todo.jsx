@@ -33,8 +33,10 @@ function Todo() {
   // todos.push(localStorage.getItem("todos"));
 
   const enterTodo = (a) => {
-    todos.push(a);
-    saveTodos();
+    if (a != "") {
+      todos.push(a);
+      saveTodos();
+    }
   };
   const enterPressed = (e) => {
     if (e.code == "Enter") {
