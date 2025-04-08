@@ -27,7 +27,13 @@ function Todo() {
   const [value, setValue] = useState("");
   let todos = [];
   /* localstorage에 이미 저장되어있는 투두스를 가져와서 넣어야함. 현재 새로고침하면 이전에 갖고있던 값을 가져오지 않는중(let 으로 todos를 초기화하는중이라서...) */
-  todos = JSON.parse(localStorage.getItem("todos")); // localstorage에 들어있던 todos 배열의 값을 가져와서 새로고침했을때도 배열을 동일하게 가져옴
+  if (localStorage.getItem("todos"))
+    todos = JSON.parse(localStorage.getItem("todos"));
+  // localstorage에 들어있던 todos 배열의 값을 가져와서 새로고침했을때도 배열을 동일하게 가져옴
+  else {
+    localStorage.setItem("todos", todos);
+    console.log("TODO");
+  }
 
   function saveTodos() {
     localStorage.setItem(TODOS_KEY, JSON.stringify(todos));
