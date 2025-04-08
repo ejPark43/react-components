@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 /*
 <version 1> 
@@ -12,47 +12,43 @@ import styled from "styled-components";
 // 방금 작성한 todo를 local storage에 저장한다.
 const TODOS_KEY = "todos"; // 로컬 저장소에 저장된 키 이름
 
-// [];
-
-// const getTodosFromStorage = () => {
-//   localStorage.getItem(TODOS_KEY);
-// };
-// const saveTodos = (a) => {
-//   console.log(a);
-//   localStorage.setItem(TODOS_KEY, a);
-//   // getTodosFromStorage();
-// };
-
 function Todo() {
   const [value, setValue] = useState("");
-  let todos = [];
-  /* localstorage에 이미 저장되어있는 투두스를 가져와서 넣어야함. 현재 새로고침하면 이전에 갖고있던 값을 가져오지 않는중(let 으로 todos를 초기화하는중이라서...) */
-  if (localStorage.getItem("todos"))
-    todos = JSON.parse(localStorage.getItem("todos"));
-  // localstorage에 들어있던 todos 배열의 값을 가져와서 새로고침했을때도 배열을 동일하게 가져옴
-  else {
-    localStorage.setItem("todos", todos);
-    console.log("TODO");
-  }
+  // let todos = [];
 
-  function saveTodos() {
+  const [todos, setTodos] = useState(() => {
+    const saved = localStorage.getItem(TODOS_KEY);
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  useEffect(() => {
     localStorage.setItem(TODOS_KEY, JSON.stringify(todos));
-  }
-  const enterTodo = (a) => {
-    if (a != "") {
-      // 빈 문자열이 아닐때만 넣어줌.
-      todos.push(a); //새로운 todo가 생길 때마다 이 배열에 넣어줄 것임.(=push 해줄거임)
-      saveTodos();
+  }, [todos]);
+
+  useEffect(() => {
+    // todos의 상태가 바뀔때마다 로컬에다가 새로 저장함
+    localStorage.setItem(TODOS_KEY, JSON.stringify(todos));
+  }, [todos]);
+
+  const enterTodo = (todoText) => {
+    // console.log("!!!!!!!" + todoText);
+    if (todoText != "") {
+      const newTodo = {
+        id: Date.now(),
+        todoText,
+        checked: false,
+      };
+      setTodos((prev) => [...prev, newTodo]);
     }
   };
 
   const enterPressed = useCallback(
     (e) => {
-      if (e.code == "Enter") {
-        if (e.nativeEvent.isComposing) return; // 한글 입력 시 마지막글자 중복으로 입력되는 버그 해결. 한글이 끝났을 떄 아직도 현재 composing 중인걸로 착각하기 때문에, 해당 경우 제외 시킴
+      if (e.code == "Enter" && !e.nativeEvent.isComposing) {
+        // 한글 입력 시 마지막글자 중복으로 입력되는 버그 해결. 한글이 끝났을 떄 아직도 현재 composing 중인걸로 착각하기 때문에, 해당 경우 제외 시킴
         console.log("enter pressed!!!");
-        let a = e.target.value;
-        enterTodo(a);
+        // let a = e.target.value;
+        enterTodo(value);
         setValue("");
         e.preventDefault();
       }
@@ -71,25 +67,22 @@ function Todo() {
     setValue(e.target.value);
   }, []);
 
-  const deleteTodo = (todo) => {
-    console.log("delete ", todo);
+  const deleteTodo = (id) => {
+    const updatedTodos = todos.filter((todo) => todo.id !== id);
+    setTodos(updatedTodos);
   };
-
   return (
     <TodoContainer>
       <WriteTodo>
         Todo:
-        <InputTodo
-          onKeyDown={(e) => enterPressed(e)}
-          onChange={onChange}
-          value={value}
-        />
+        <InputTodo onKeyDown={enterPressed} onChange={onChange} value={value} />
         {/* <SetTodoBtn onClick={() => console.log("set todo!")}>set</SetTodoBtn> */}
       </WriteTodo>
       <ShowTodos>
         {todos.map((todo) => (
-          <EachTodo key={todo}>
-            {todo} <DeleteBtn onClick={() => deleteTodo(todo)}>X</DeleteBtn>
+          <EachTodo key={todo.id}>
+            {todo.todoText}{" "}
+            <DeleteBtn onClick={() => deleteTodo(todo.id)}>X</DeleteBtn>
           </EachTodo>
         ))}
       </ShowTodos>
