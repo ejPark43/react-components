@@ -8,8 +8,6 @@ import styled from "styled-components";
 
 */
 
-// todo를 입력한다.
-// 방금 작성한 todo를 local storage에 저장한다.
 const TODOS_KEY = "todos"; // 로컬 저장소에 저장된 키 이름
 
 function Todo() {
@@ -82,13 +80,32 @@ function Todo() {
         {todos.map((todo) => (
           <EachTodo key={todo.id}>
             {todo.todoText}{" "}
-            <DeleteBtn onClick={() => deleteTodo(todo.id)}>X</DeleteBtn>
+            <div style={{ display: "flex" }}>
+              <ToggleBtn
+                key={todo.id}
+                // onClick={() => setTodos()}
+                onClick={() => {
+                  let check = !todo.checked;
+                  setTodos((prev) => [...prev, (todo.checked = check)]);
+                }}
+                $isChecked={todo.checked}
+              >
+                AAAAAAAAA
+              </ToggleBtn>
+              <DeleteBtn onClick={() => deleteTodo(todo.id)}>X</DeleteBtn>
+            </div>
           </EachTodo>
         ))}
       </ShowTodos>
     </TodoContainer>
   );
 }
+const ToggleBtn = styled.div`
+  display: flex;
+  cursor: pointer;
+  border: 2px solid ${(props) => (props.$isChecked ? "blue" : "red")};
+  background-color: gold;
+`;
 const DeleteBtn = styled.div`
   display: flex;
   justify-content: center;
