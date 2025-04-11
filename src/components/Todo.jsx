@@ -85,13 +85,19 @@ function Todo() {
                 key={todo.id}
                 // onClick={() => setTodos()}
                 onClick={() => {
-                  let check = !todo.checked;
-                  setTodos((prev) => [...prev, (todo.checked = check)]);
+                  setTodos((prev) =>
+                    prev.map(
+                      (
+                        item // 특정 아이템을 찾아서.... 해당 아이템의 checked값만 바꿔줌
+                      ) =>
+                        item.id === todo.id
+                          ? { ...item, checked: !item.checked }
+                          : item
+                    )
+                  );
                 }}
                 $isChecked={todo.checked}
-              >
-                AAAAAAAAA
-              </ToggleBtn>
+              />
               <DeleteBtn onClick={() => deleteTodo(todo.id)}>X</DeleteBtn>
             </div>
           </EachTodo>
@@ -103,8 +109,14 @@ function Todo() {
 const ToggleBtn = styled.div`
   display: flex;
   cursor: pointer;
+  width: 20px;
+  height: 20px;
+  /* isChecked == true일때... 
+
+애니메이션 적용필요. 
+*/
   border: 2px solid ${(props) => (props.$isChecked ? "blue" : "red")};
-  background-color: gold;
+  background-color: ${(props) => (props.$isChecked ? "green" : "red")};
 `;
 const DeleteBtn = styled.div`
   display: flex;
