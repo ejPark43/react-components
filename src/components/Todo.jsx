@@ -14,6 +14,13 @@ function Todo() {
   const [value, setValue] = useState("");
   // let todos = [];
 
+  // const [isOn, setisOn] = useState(false);
+
+  // const toggleHandler = () => {
+  //   // isOn의 상태를 변경하는 메소드를 구현
+  //   setisOn(!isOn)
+  // };
+
   const [todos, setTodos] = useState(() => {
     const saved = localStorage.getItem(TODOS_KEY);
     return saved ? JSON.parse(saved) : [];
@@ -81,7 +88,7 @@ function Todo() {
           <EachTodo key={todo.id}>
             {todo.todoText}{" "}
             <div style={{ display: "flex" }}>
-              <ToggleBtn
+              {/* <ToggleBtn
                 key={todo.id}
                 // onClick={() => setTodos()}
                 onClick={() => {
@@ -97,7 +104,27 @@ function Todo() {
                   );
                 }}
                 $isChecked={todo.checked}
-              />
+              /> */}
+
+              <ToggleSwitch>
+                <CheckBox
+                  type="checkbox"
+                  checked={todo.checked}
+                  onChange={() => {
+                    setTodos((prev) =>
+                      prev.map(
+                        (
+                          item // 특정 아이템을 찾아서.... 해당 아이템의 checked값만 바꿔줌
+                        ) =>
+                          item.id === todo.id
+                            ? { ...item, checked: !item.checked }
+                            : item
+                      )
+                    );
+                  }}
+                />
+                <ToggleSlider />
+              </ToggleSwitch>
               <DeleteBtn onClick={() => deleteTodo(todo.id)}>X</DeleteBtn>
             </div>
           </EachTodo>
@@ -106,18 +133,64 @@ function Todo() {
     </TodoContainer>
   );
 }
-const ToggleBtn = styled.div`
-  display: flex;
-  cursor: pointer;
-  width: 20px;
-  height: 20px;
-  /* isChecked == true일때... 
 
-애니메이션 적용필요. 
-*/
-  border: 2px solid ${(props) => (props.$isChecked ? "blue" : "red")};
-  background-color: ${(props) => (props.$isChecked ? "green" : "red")};
+const ToggleSwitch = styled.label`
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+  width: 47.7px;
+  height: 23.33px;
 `;
+
+const ToggleSlider = styled.span`
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ff3815;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 34px;
+
+  &:before {
+    position: absolute;
+    content: "";
+    height: 15px;
+    width: 15px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+`;
+
+const CheckBox = styled.input`
+  opacity: 0;
+  width: 0;
+  height: 0;
+
+  &:checked + ${ToggleSlider} {
+    background-color: #0fc70f;
+  }
+
+  &:checked + ${ToggleSlider}:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+`;
+// const ToggleBtn = styled.div`
+//   display: flex;
+//   cursor: pointer;
+//   width: 20px;
+//   height: 20px;
+//   border: 2px solid ${(props) => (props.$isChecked ? "blue" : "red")};
+//   background-color: ${(props) => (props.$isChecked ? "green" : "red")};
+// `;
 const DeleteBtn = styled.div`
   display: flex;
   justify-content: center;
@@ -125,7 +198,7 @@ const DeleteBtn = styled.div`
   width: 1rem;
   height: 1rem;
   cursor: pointer;
-  border: 2px solid red;
+  border: 2px solid blue;
 `;
 const EachTodo = styled.div`
   display: flex;
