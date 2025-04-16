@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
+import DeleteIcon from "@mui/icons-material/Delete";
 /*
 <version 1> 
 1. todo 작성하면 하나씩 생긴다. 
@@ -125,7 +126,9 @@ function Todo() {
                 />
                 <ToggleSlider />
               </ToggleSwitch>
-              <DeleteBtn onClick={() => deleteTodo(todo.id)}>X</DeleteBtn>
+              <DeleteBtn onClick={() => deleteTodo(todo.id)}>
+                <DeleteIcon />
+              </DeleteBtn>
             </div>
           </EachTodo>
         ))}
@@ -195,8 +198,8 @@ const DeleteBtn = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1rem;
-  height: 1rem;
+  //  width: 1rem;
+  // height: 1rem;
   cursor: pointer;
   border: 2px solid blue;
 `;
