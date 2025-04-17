@@ -5,7 +5,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 <version 1> 
 1. todo 작성하면 하나씩 생긴다. 
 2. todo는 삭제, 수정 기능이 있다. 
-3. 하루에 모두 초기화된다.
+3. todo list에 아무것도 없으면 추가하라는 메시지 띄우기 
+4. todo를 완료했다면 완료한 칸으로 이동하기
 
 */
 
@@ -198,17 +199,24 @@ const DeleteBtn = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  /* padding: 2px; */
   //  width: 1rem;
   // height: 1rem;
   cursor: pointer;
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
+  border-radius: 5px;
+  &:hover {
+    background-color: rgb(130, 168, 255);
+  }
 `;
 const EachTodo = styled.div`
   display: flex;
   padding: 8px;
   width: 50%;
   justify-content: space-between;
-  border-bottom: 2px solid red;
+  border: 2px solid beige;
+  margin-bottom: 2px;
+  border-radius: 5px;
 `;
 const ShowTodos = styled.div`
   display: flex;
