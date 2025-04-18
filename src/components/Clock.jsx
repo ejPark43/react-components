@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-
+import { theme } from "../styles/theme";
 function Clock() {
   const [clockTime, setClockTime] = useState("");
   const [stringDate, setStringDate] = useState("");
@@ -32,22 +32,28 @@ function Clock() {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  border: 2px solid green;
+  /* border: 2px solid ${theme.colors.demi_darkGray}; */
+  /* background-color: ${theme.colors.demi_darkGray}; */
+  background-color: ${theme.colors.demi_blue};
   height: 130px;
   padding: 20px; //width값 없애고 그냥 Padding값만 줌, 자동으로 padding값 적용된 width로 설정됨.
 `;
 
 const DatePart = styled.div`
   display: flex;
-  border: 2px solid gold;
+  /* border: 2px solid gold; */
+  background-color: ${theme.colors.demi_gray};
   justify-content: center;
   font-size: 30px;
 `;
 const ClockPart = styled.div`
   display: flex;
-  border: 2px solid black;
+  /* border: 2px solid black; */
   justify-content: center;
-  color: black;
+  /* color: black; */
+  color: ${theme.colors.demi_darkGray};
   font-size: 70px;
+  /* background-color: ${theme.colors.demi_blue}; */
+  background-color: ${theme.colors.white};
 `;
 export default Clock;
