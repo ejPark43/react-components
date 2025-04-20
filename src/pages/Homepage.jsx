@@ -4,6 +4,7 @@ import Clock from "../components/Clock";
 import Tabs from "../components/Tabs";
 import Todo from "../components/Todo";
 import Vocab from "../components/Vocab";
+import RandomGif from "../components/RandomGif";
 
 function Homepage() {
   const [tabs, setTabs] = useState("todo");
@@ -13,6 +14,7 @@ function Homepage() {
         <Clock />
         <Tabs tabs={tabs} setTabs={setTabs} />
         {tabs === "todo" ? <Todo /> : <Vocab />}
+        <RandomGif />
       </Container>
     </div>
   );
