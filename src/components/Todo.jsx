@@ -86,11 +86,14 @@ function Todo() {
         {/* <SetTodoBtn onClick={() => console.log("set todo!")}>set</SetTodoBtn> */}
       </WriteTodo>
       <ShowTodos>
-        {todos.map((todo) => (
-          <EachTodo key={todo.id}>
-            {todo.todoText}{" "}
-            <div style={{ display: "flex" }}>
-              {/* <ToggleBtn
+        {todos
+          .slice(0)
+          .reverse()
+          .map((todo) => (
+            <EachTodo key={todo.id}>
+              {todo.todoText}{" "}
+              <div style={{ display: "flex" }}>
+                {/* <ToggleBtn
                 key={todo.id}
                 // onClick={() => setTodos()}
                 onClick={() => {
@@ -108,31 +111,31 @@ function Todo() {
                 $isChecked={todo.checked}
               /> */}
 
-              <ToggleSwitch>
-                <CheckBox
-                  type="checkbox"
-                  checked={todo.checked}
-                  onChange={() => {
-                    setTodos((prev) =>
-                      prev.map(
-                        (
-                          item // 특정 아이템을 찾아서.... 해당 아이템의 checked값만 바꿔줌
-                        ) =>
-                          item.id === todo.id
-                            ? { ...item, checked: !item.checked }
-                            : item
-                      )
-                    );
-                  }}
-                />
-                <ToggleSlider />
-              </ToggleSwitch>
-              <DeleteBtn onClick={() => deleteTodo(todo.id)}>
-                <DeleteIcon />
-              </DeleteBtn>
-            </div>
-          </EachTodo>
-        ))}
+                <ToggleSwitch>
+                  <CheckBox
+                    type="checkbox"
+                    checked={todo.checked}
+                    onChange={() => {
+                      setTodos((prev) =>
+                        prev.map(
+                          (
+                            item // 특정 아이템을 찾아서.... 해당 아이템의 checked값만 바꿔줌
+                          ) =>
+                            item.id === todo.id
+                              ? { ...item, checked: !item.checked }
+                              : item
+                        )
+                      );
+                    }}
+                  />
+                  <ToggleSlider />
+                </ToggleSwitch>
+                <DeleteBtn onClick={() => deleteTodo(todo.id)}>
+                  <DeleteIcon />
+                </DeleteBtn>
+              </div>
+            </EachTodo>
+          ))}
       </ShowTodos>
     </TodoContainer>
   );
@@ -213,6 +216,7 @@ const EachTodo = styled.div`
   display: flex;
   padding: 8px;
   width: 50%;
+  align-items: center;
   justify-content: space-between;
   border: 2px solid beige;
   margin-bottom: 2px;
