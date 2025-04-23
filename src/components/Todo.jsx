@@ -91,7 +91,9 @@ function Todo() {
           .reverse()
           .map((todo) => (
             <EachTodo key={todo.id}>
-              {todo.todoText}{" "}
+              {todo.todoText.length > 20
+                ? todo.todoText.substr(0, 20) + "..."
+                : todo.todoText}
               <div style={{ display: "flex" }}>
                 {/* <ToggleBtn
                 key={todo.id}
@@ -227,7 +229,7 @@ const ShowTodos = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 50vh;
+  /* height: 50vh; */
   border: 2px solid gold;
   overflow: scroll;
 `;

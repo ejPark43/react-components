@@ -26,6 +26,6 @@ const Container = styled.div`
   justify-content: center;
   border: 2px solid red;
   width: 700px;
-  height: 100vh;
+  height: 100%;
 `;
 export default Homepage;
