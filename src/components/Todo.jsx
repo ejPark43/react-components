@@ -229,11 +229,12 @@ const ShowTodos = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  /* height: 50vh; */
+  height: 50vh;
   border: 2px solid gold;
   overflow: scroll;
 `;
 const TodoContainer = styled.div`
+  cursor: default;
   display: flex;
   flex-direction: column;
   align-items: center;

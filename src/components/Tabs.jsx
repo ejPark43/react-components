@@ -17,7 +17,7 @@ const Container = styled.div`
 const Button = styled.div`
   display: flex;
   padding: 8px;
-  /* border: 2px solid blue; */
+  border: 2px solid blue;
   border-radius: 5px;
   cursor: pointer;
   &:hover {

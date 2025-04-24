@@ -13,6 +13,8 @@ export default RandomGif;
 
 const Container = styled.div`
   display: flex;
-
+  height: 200px;
+  width: auto;
+  /* height: auto; */
   justify-content: center;
 `;
