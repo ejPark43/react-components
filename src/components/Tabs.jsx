@@ -13,11 +13,13 @@ function Tabs({ tabs, setTabs }) {
 
 const Container = styled.div`
   display: flex;
+  padding: 10px;
+  justify-content: center;
 `;
 const Button = styled.div`
   display: flex;
   padding: 8px;
-  border: 2px solid blue;
+  border: 5px solid ${theme.colors.demi_blue};
   border-radius: 5px;
   cursor: pointer;
   &:hover {
