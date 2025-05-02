@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { theme } from "../styles/theme";
 /*
 <version 1> 
 1. todo 작성하면 하나씩 생긴다. 
@@ -234,13 +235,14 @@ const ShowTodos = styled.div`
   overflow: scroll;
 `;
 const TodoContainer = styled.div`
+  padding-top: 10px;
   cursor: default;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   height: 100%;
-  border: 2px solid magenta;
+  border: 2px solid ${theme.colors.demi_blue};
 `;
 const WriteTodo = styled.div`
   display: flex;
@@ -248,12 +250,16 @@ const WriteTodo = styled.div`
   /* flex-direction: row; */
 `;
 const InputTodo = styled.input`
-  border: 2px solid blue;
+  border: 2px solid ${theme.colors.demi_gray};
   outline: none;
+  border-radius: 5px;
   /* height: 30px; */
   padding: 10px;
   width: 200px;
   font-size: 15px;
+  &:focus {
+    border: 2px solid #9c9ec1;
+  }
 `;
 // const SetTodoBtn = styled.div`
 //   padding: 10px;
