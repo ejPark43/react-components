@@ -34,7 +34,7 @@ const Container = styled.div`
   flex-direction: column;
   /* border: 2px solid ${theme.colors.demi_darkGray}; */
   /* background-color: ${theme.colors.demi_darkGray}; */
-  background-color: ${theme.colors.demi_blue};
+  background-color: ${theme.colors.white};
   height: 130px;
   padding: 20px; //width값 없애고 그냥 Padding값만 줌, 자동으로 padding값 적용된 width로 설정됨.
 `;
@@ -42,7 +42,7 @@ const Container = styled.div`
 const DatePart = styled.div`
   display: flex;
   /* border: 2px solid gold; */
-  background-color: ${theme.colors.demi_gray};
+  background-color: ${theme.colors.secondary};
   justify-content: center;
   font-size: 30px;
 `;
@@ -51,9 +51,9 @@ const ClockPart = styled.div`
   /* border: 2px solid black; */
   justify-content: center;
   /* color: black; */
-  color: ${theme.colors.demi_darkGray};
+  color: ${theme.colors.primary};
   font-size: 70px;
-  /* background-color: ${theme.colors.demi_blue}; */
-  background-color: ${theme.colors.white};
+  /* background-color: ${theme.colors}; */
+  background-color: ${theme.colors.tertiary};
 `;
 export default Clock;

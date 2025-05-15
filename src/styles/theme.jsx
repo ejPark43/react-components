@@ -19,6 +19,10 @@ const colors = {
 
   hover: "#F7F6FA",
   // hover2: "#48495a",
+
+  primary: "#7730DA",
+  secondary: "#B979FE",
+  tertiary: "#ECEBFB",
 };
 
 export const theme = {
