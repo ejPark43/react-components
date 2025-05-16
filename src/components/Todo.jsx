@@ -248,6 +248,7 @@ const WriteTodo = styled.div`
   display: flex;
   align-items: center;
   /* flex-direction: row; */
+  padding-bottom: 10px;
 `;
 const InputTodo = styled.input`
   border: 2px solid ${theme.colors.demi_gray};

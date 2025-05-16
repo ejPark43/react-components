@@ -19,11 +19,13 @@ const Container = styled.div`
 const Button = styled.div`
   display: flex;
   padding: 8px;
-  border: 5px solid ${theme.colors.demi_blue};
+  border: 2px solid ${theme.colors.secondary};
+  color: ${theme.colors.primary};
   border-radius: 5px;
   cursor: pointer;
   &:hover {
-    background-color: ${theme.colors.demi_blue};
+    background-color: ${theme.colors.secondary};
+    color: white;
   }
 `;
 export default Tabs;
