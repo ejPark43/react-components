@@ -159,7 +159,7 @@ const ToggleSlider = styled.span`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ff3815;
+  background-color: ${theme.colors.demi_gray};
   -webkit-transition: 0.4s;
   transition: 0.4s;
   border-radius: 34px;
@@ -184,7 +184,7 @@ const CheckBox = styled.input`
   height: 0;
 
   &:checked + ${ToggleSlider} {
-    background-color: #0fc70f;
+    background-color: ${theme.colors.secondary};
   }
 
   &:checked + ${ToggleSlider}:before {
@@ -221,7 +221,7 @@ const EachTodo = styled.div`
   width: 50%;
   align-items: center;
   justify-content: space-between;
-  border: 2px solid beige;
+  border: 2px solid ${theme.colors.tertiary};
   margin-bottom: 2px;
   border-radius: 5px;
 `;
