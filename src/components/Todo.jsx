@@ -251,7 +251,7 @@ const WriteTodo = styled.div`
   padding-bottom: 10px;
 `;
 const InputTodo = styled.input`
-  border: 2px solid ${theme.colors.demi_gray};
+  border: 2px solid ${theme.colors.secondary};
   outline: none;
   border-radius: 5px;
   /* height: 30px; */
@@ -259,7 +259,7 @@ const InputTodo = styled.input`
   width: 200px;
   font-size: 15px;
   &:focus {
-    border: 2px solid #9c9ec1;
+    border: 2px solid ${theme.colors.primary};
   }
 `;
 // const SetTodoBtn = styled.div`
