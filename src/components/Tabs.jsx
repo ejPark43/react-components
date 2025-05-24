@@ -6,7 +6,7 @@ function Tabs({ tabs, setTabs }) {
   return (
     <Container>
       <Button onClick={() => setTabs("todo")}>Todo list</Button> {tabs}
-      <Button onClick={() => setTabs("vocab")}>Vocab Study</Button>
+      <Button onClick={() => setTabs("memo")}>Memo </Button>
     </Container>
   );
 }

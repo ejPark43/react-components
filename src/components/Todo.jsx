@@ -211,8 +211,10 @@ const DeleteBtn = styled.div`
   cursor: pointer;
   /* border: 2px solid blue; */
   border-radius: 5px;
+
   &:hover {
-    background-color: rgb(130, 168, 255);
+    color: ${theme.colors.primary};
+    /* background-color: ${theme.colors.tertiary}; */
   }
 `;
 const EachTodo = styled.div`

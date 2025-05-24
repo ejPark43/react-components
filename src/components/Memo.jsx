@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-function Vocab() {
-  return <VocabContainer>Vocab</VocabContainer>;
+function Memo() {
+  return <MemoContainer>MEMO!!!</MemoContainer>;
 }
 
-export default Vocab;
-const VocabContainer = styled.div`
+export default Memo;
+const MemoContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

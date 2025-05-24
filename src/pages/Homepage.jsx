@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Clock from "../components/Clock";
 import Tabs from "../components/Tabs";
 import Todo from "../components/Todo";
-import Vocab from "../components/Vocab";
+import Memo from "../components/Memo";
 import RandomGif from "../components/RandomGif";
 
 function Homepage() {
@@ -13,7 +13,7 @@ function Homepage() {
       <Container>
         <Clock />
         <Tabs tabs={tabs} setTabs={setTabs} />
-        {tabs === "todo" ? <Todo /> : <Vocab />}
+        {tabs === "todo" ? <Todo /> : <Memo />}
         <RandomGif />
       </Container>
     </div>
